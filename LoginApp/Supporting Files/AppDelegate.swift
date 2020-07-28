@@ -14,10 +14,8 @@ import FBSDKCoreKit
 import FirebaseAuth
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-    
-    
-    
+class AppDelegate: UIResponder, UIApplicationDelegate {
+ 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
@@ -28,34 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         )
         
         GIDSignIn.sharedInstance()?.clientID = "975693140125-882hm9j6et1gddkjl16vmj8b51hcbl0u.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance()?.delegate = self
         
         return true
     }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-        if let err = error {
-            print("Failed to log into Google: ", err)
-            return
-        }
-        
-        print("Successfully log in into Google!", user!)
-        
-        guard let idToken = user.authentication.idToken else { return }
-        guard let accsesToken = user.authentication.accessToken else { return }
-        let credeintials = FirebaseAuth.GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accsesToken)
-        
-        FirebaseAuth.Auth.auth().signIn(with: credeintials) { (user, error) in
-            if let err = error {
-                print("Failed to create a Firebase user Google account", err )
-            }
-
-            print("Success logged into Google")
-        }
-
-    }
-    
+   
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         ApplicationDelegate.shared.application(
