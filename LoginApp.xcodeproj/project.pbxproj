@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B4665B759C3521CD0D3AFC99 /* Pods_LoginApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B969367A3B10765B9690C915 /* Pods_LoginApp.framework */; };
+		EB005E9824D84D94009D6642 /* GoogleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB005E9724D84D94009D6642 /* GoogleAuth.swift */; };
 		EB57913B24C6EAC800FF9811 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB57913A24C6EAC800FF9811 /* AppDelegate.swift */; };
 		EB57913D24C6EAC800FF9811 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB57913C24C6EAC800FF9811 /* SceneDelegate.swift */; };
 		EB57913F24C6EAC800FF9811 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB57913E24C6EAC800FF9811 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 		B969367A3B10765B9690C915 /* Pods_LoginApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoginApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE244EE1E875B3FDA072C333 /* Pods-LoginApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginApp.release.xcconfig"; path = "Target Support Files/Pods-LoginApp/Pods-LoginApp.release.xcconfig"; sourceTree = "<group>"; };
 		E1E022F82E789CCB3C376187 /* Pods-LoginApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginApp.debug.xcconfig"; path = "Target Support Files/Pods-LoginApp/Pods-LoginApp.debug.xcconfig"; sourceTree = "<group>"; };
+		EB005E9724D84D94009D6642 /* GoogleAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuth.swift; sourceTree = "<group>"; };
 		EB57913724C6EAC800FF9811 /* LoginApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB57913A24C6EAC800FF9811 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB57913C24C6EAC800FF9811 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EB005E9624D84D7C009D6642 /* LoginServices */ = {
+			isa = PBXGroup;
+			children = (
+				EB005E9724D84D94009D6642 /* GoogleAuth.swift */,
+			);
+			path = LoginServices;
+			sourceTree = "<group>";
+		};
 		EB57912E24C6EAC800FF9811 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +98,7 @@
 				EB57914524C6EAC900FF9811 /* LaunchScreen.storyboard */,
 				EB57914824C6EAC900FF9811 /* Info.plist */,
 				EB57914F24C6F9B900FF9811 /* GoogleService-Info.plist */,
+				EB005E9624D84D7C009D6642 /* LoginServices */,
 				EB57914E24C6EB3C00FF9811 /* Supporting Files */,
 			);
 			path = LoginApp;
@@ -238,6 +249,7 @@
 			files = (
 				EB57913F24C6EAC800FF9811 /* ViewController.swift in Sources */,
 				EB57913B24C6EAC800FF9811 /* AppDelegate.swift in Sources */,
+				EB005E9824D84D94009D6642 /* GoogleAuth.swift in Sources */,
 				EB57913D24C6EAC800FF9811 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

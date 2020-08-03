@@ -11,82 +11,45 @@ import FBSDKLoginKit
 import UIKit
 import FirebaseAuth
 
-class ViewController: UIViewController, LoginButtonDelegate, GIDSignInDelegate {
+class ViewController: UIViewController {
     
-    @IBOutlet var signInButtonGoogle: UIButton!
-  
-    @IBAction func signInButtonFacebook(_ sender: Any) {
-        
-        if let token = AccessToken.current, !token.isExpired {
-            
-            let token = token.tokenString
-            
-            let request = FBSDKLoginKit.GraphRequest(graphPath: "me",
-                                                     parameters: ["fields": "email, name"],
-                                                     tokenString: token,
-                                                     version: nil,
-                                                     httpMethod: .get)
-            
-            request.start(completionHandler: { connection, result, error in
-                print("\(result ?? "")")
-            })
-            
-        } else {
-            let loginButton = FBLoginButton()
-            loginButton.delegate = self
-            loginButton.permissions = ["public_profile", "email"]
-            
-            loginButton.isHidden = true
-            view.addSubview(loginButton)
-            
-            loginButton.sendActions(for: UIControl.Event.touchUpInside)
-        }
+    var googleSignIn = GIDSignIn.sharedInstance()
+    
+    @IBOutlet weak var signInButtonGoogle: UIButton!
+    @IBOutlet weak var signInFacebookButton: UIButton!
+    
+    @IBAction func googleLoginButtonAction(_ sender: UIButton) {
+        self.googleLogin()
     }
     
-    @objc func googleLogin(_ sender: UIButton) {
-        GIDSignIn.sharedInstance()?.delegate = self
-        GIDSignIn.sharedInstance().signIn()
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    @IBAction func signInButtonFacebook(_ sender: UIButton ) {
         
-        if let err = error {
-            print("Failed to log into Google: ", err)
-            return
-        }
+        self.facebookLogin()
         
-        print("Successfully log in into Google!", user!)
+        let loginButton = FBLoginButton()
+
+        loginButton.permissions = ["public_profile", "email"]
+        loginButton.delegate = self
+        loginButton.isHidden = true
+        view.addSubview(loginButton)
         
-        guard let idToken = user.authentication.idToken else { return }
-        guard let accsesToken = user.authentication.accessToken else { return }
-        let credeintials = FirebaseAuth.GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accsesToken)
-        
-        FirebaseAuth.Auth.auth().signIn(with: credeintials) { (user, error) in
-            if let err = error {
-                print("Failed to create a Firebase user Google account", err )
-            }
-            print("Success logged into Google")
-        }
-    }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        ApplicationDelegate.shared.application(
-            app,
-            open: url,
-            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
-        )
-        return GIDSignIn.sharedInstance().handle(url)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        signInButtonGoogle.addTarget(self, action: #selector(googleLogin(_:)) , for: UIControl.Event.touchUpInside)
+        loginButton.sendActions(for: UIControl.Event.touchUpInside)
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func googleLogin() {
+        
+        self.googleSignIn?.presentingViewController = self
+        self.googleSignIn?.signIn()
+    }
+    
+}
+
+extension ViewController: LoginButtonDelegate {
+    
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         let token = result?.token?.tokenString
         
@@ -118,5 +81,21 @@ class ViewController: UIViewController, LoginButtonDelegate, GIDSignInDelegate {
         
     }
     
+    func facebookLogin() {
+        
+        if let token = AccessToken.current, !token.isExpired {
+            
+            let token = token.tokenString
+            
+            let request = FBSDKLoginKit.GraphRequest(graphPath: "me",
+                                                     parameters: ["fields": "email, name"],
+                                                     tokenString: token,
+                                                     version: nil,
+                                                     httpMethod: .get)
+            
+            request.start(completionHandler: { connection, result, error in
+                print("\(result ?? "")")
+            })
+        }
+    }
 }
-

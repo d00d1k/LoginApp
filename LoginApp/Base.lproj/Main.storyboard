@@ -15,6 +15,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8An-mk-n1I" customClass="GID">
+                                <rect key="frame" x="20" y="124" width="374" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="3CF-Eq-aou"/>
+                                    <constraint firstAttribute="width" secondItem="8An-mk-n1I" secondAttribute="height" multiplier="374:63" constant="-100.92063492063494" id="RjB-x0-kfG"/>
+                                </constraints>
+                                <state key="normal" image="google_logo"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyj-Ek-do6">
+                                <rect key="frame" x="20" y="355" width="374" height="63"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="facebook"/>
+                                <connections>
+                                    <action selector="googleLoginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NVz-bg-21p"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoD-yU-lmY">
                                 <rect key="frame" x="20" y="212" width="374" height="63"/>
                                 <constraints>
@@ -24,14 +40,6 @@
                                 <connections>
                                     <action selector="signInButtonFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Irl-d3-4IS"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8An-mk-n1I" customClass="GID">
-                                <rect key="frame" x="20" y="124" width="374" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="3CF-Eq-aou"/>
-                                    <constraint firstAttribute="width" secondItem="8An-mk-n1I" secondAttribute="height" multiplier="374:63" constant="-100.92063492063494" id="RjB-x0-kfG"/>
-                                </constraints>
-                                <state key="normal" image="google_logo"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -47,7 +55,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="signInButtonGoogle" destination="8An-mk-n1I" id="U7l-fL-I9D"/>
+                        <outlet property="signInButtonGoogle" destination="cyj-Ek-do6" id="1e7-20-lrh"/>
+                        <outlet property="signInFacebookButton" destination="yoD-yU-lmY" id="uOw-8A-VPl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
